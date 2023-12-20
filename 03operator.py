@@ -87,3 +87,29 @@ print(bool(1), bool('abc'))
 #다음 수식의 결과는?
 print ( 0 and 'abc', 1 and 'abc') # and 뒤에꺼가 나오는거임.
 print ('' or 'abc', '' and 'abc')
+
+# 문자열 서식화 하기 (formatting)
+# 문자열에서 특정부분만 바뀌고 나머지는 변화가 없는 경우
+# 문자열 서식화를 이용하면 편리하게 적용 가능
+
+print ('이름 : 홍길동, 나이 : 25')
+
+name, age = '김성은', 26
+print ('이름 :', name, '나이 :', age)
+
+# % 서식 - 서식 문자열 사용
+print ('이름 : %s, 나이 : %d' % (name, age))
+
+# .format
+print ('이름 :{}, 나이 : {}' .format(name, age))
+
+# f-string
+print (f'이름 : {name}, 나이 : {age}')
+
+
+
+
+
+
+
+
