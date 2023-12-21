@@ -105,4 +105,77 @@ for i in range(len(menus)):
     print(menus[i],end=',')
 
 
+#pass 키워드
+#반복문 사용시 코드만 작성해놓고
+#실행문은 나중에 작성하고 싶을 경우
+#pass 라는 키워드 사용
+for i in range(1,100):
+    pass
+
+# 반복 수행시 이터러블 객체가 필요없는 경우
+# 변수명 대신 _를 사용하기도 함
+for _ in range(10):
+    print('Hello, World!!')
+
+#중첩
+# *
+# **
+# ***
+# ****
+# ***** 모양 출력하기
+
+for i in range(1,5+1):          #행 (비유하자면 시침)
+    for j in range(1,5+1):      #열 (비유하자면 분침) (아래있는게 한바퀴 다 돌아야 위에있는 놈이 돈다)
+        print('*', end='')
+    print()                     #줄바꿈 (새로운 행에 만듦)
+
+#2단부터 9단까지 구구단을 출력하는
+#반복문을 작성하세요
+
+for i in range(1, 9+1):
+    print(f'{dan} x {i} = {dan * i}')
+
+for dan in range(2,9+1):
+    for j in range(1, 9 + 1):
+        print(f'{dan} x {j} = {dan * j}', end=',')
+    print()
+#줄바꿈없이 출력하되 9개의 단을 출력하고 줄바꿈 추가
+#자리수 맞추기
+
+for dan in range(2,9+1):
+    for j in range(1, 9 + 1):
+        print(f'{j} x {dan} = {dan * j:2d}', end='  ,  ')
+    print() # 2d 는 너비. 즉 정렬해서 보여준다.
+
+# employees를 이용해서 사원정보를 입력하면
+# list에 각각 저장하는 코드를 작성하세요
+# 사번empno, 이름fname, 성lname, 이메일email,
+# 입사일hdate, 직책jobid, 급여sal, 부서번호deptid
+
+employees = []
+empno = []
+fname = []
+lname = []
+email = []
+hdate = []
+jobid = []
+sal = []
+deptid = []
+
+
+
+for i in range(100,207):
+    print(f'{i}번째 사원번호 입력 ')
+    empno.append(int(input('사원번호는?')))
+    fname.append(input('이름은?'))
+    lname.append(input('성은?'))
+    email.append(input('이메일은?'))
+    hdate.append(int(input('입사일은?')))
+    jobid.append(input('직책은?'))
+    sal.append(int(input('급여는?')))
+    deptid.append(int(input('부서번호는?')))
+
+
+
+
 
