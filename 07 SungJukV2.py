@@ -24,14 +24,22 @@ subs = ['kor','eng','math']
 print(subs)
 
 names = ['채리','종서','세경']
-subs[0] = [77,57,97]
-subs[1] = [89,69,89]
-subs[2] = [77,100,57]
+kors = [77,57,97]
+engs = [89,69,89]
+maths = [77,100,57]
 
-print (names[0])
-print (names[0],grades2[0])
+tots = []
+avgs = []
 
-print (names[0],grades1[0],grades3[0])
-print(names[0],grades3)
-print(names[0],subs[0])
-print(names[0],subs[0][1])
+tots.append(kors[0] + engs[0] + maths[0])
+avgs.append(tots[0] / 3)
+tots.append(kors[1] + engs[1] + maths[1])
+avgs.append(tots[1] / 3)
+tots.append(kors[2] + engs[2] + maths[2])
+avgs.append(tots[2] / 3)
+
+#결과 출력
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
+print (f'총점: {tots[0]:d}, 평균: {avgs[0]:.1f}')
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
