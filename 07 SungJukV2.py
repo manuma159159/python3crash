@@ -16,12 +16,6 @@ print(tot)
 print (avg)
 
 # 결과출력
-print (f'이름: {name:s}, 국어: {kor}, 영어: {eng}, 수학: {math}')
-print (f'총점: {tot:d}, 평균: {avg:.1f}')
-
-subs = ['kor','eng','math']
-
-print(subs)
 
 names = ['채리','종서','세경']
 kors = [77,57,97]
