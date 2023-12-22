@@ -153,29 +153,36 @@ for dan in range(2,9+1):
 # 입사일hdate, 직책jobid, 급여sal, 부서번호deptid
 
 employees = []
-empno = []
-fname = []
-lname = []
-email = []
-hdate = []
-jobid = []
-sal = []
-deptid = []
+empnos = []
+fnames = []
+lnames = []
+emails = []
+hdates = []
+jobids = []
+sals = []
+deptids = []
 
+empno = input('사번은?')
+fname = input('이름은?')
+lname = input('성은?')
+email = input('이메일은?')
+hdate = input('입사일은?')
+jobid = input('직책은?')
+sal = input('급여은?')
+deptid = input('부서번호는?')
 
+empnos.append(empno)
+fnames.append(fname)
+lnames.append(lname)
+emails.append(email)
+hdates.append(hdate)
+jobids.append(jobid)
+sals.append(sal)
+deptids.append(deptid)
 
-for i in range(100,207):
-    print(f'{i}번째 사원번호 입력 ')
-    empno.append(int(input('사원번호는?')))
-    fname.append(input('이름은?'))
-    lname.append(input('성은?'))
-    email.append(input('이메일은?'))
-    hdate.append(int(input('입사일은?')))
-    jobid.append(input('직책은?'))
-    sal.append(int(input('급여는?')))
-    deptid.append(int(input('부서번호는?')))
-
-
-
+for i in range(len(empnos)):
+    print(f'{empnos[i]} {fnames[i]} {lnames[i]}'
+          f'{emails[i]} {hdates[i}} {jobids[i]}'
+          f'{sals[i]} {deptids[i]}')
 
 
