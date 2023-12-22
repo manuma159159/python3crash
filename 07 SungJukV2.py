@@ -10,8 +10,8 @@ eng = 90
 math = 90
 #성적 처리
 print(kor + eng + math)
-avg = (tot/3)
 tot = (kor + eng + math)
+avg = (tot/3)
 print(tot)
 print (avg)
 
@@ -33,7 +33,7 @@ tots.append(kors[2] + engs[2] + maths[2])
 avgs.append(tots[2] / 3)
 
 #결과 출력
-print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]}')
 print (f'총점: {tots[0]:d}, 평균: {avgs[0]:.1f}')
-print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
-print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]})
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]}')
+print (f'이름: {names[0]:s}, 국어: {kors[0]}, 영어: {engs[0]}, 수학:{maths[0]}')
