@@ -134,6 +134,23 @@ for i in range(1,99+1):
 # 실전예제 2
 # 열차 교차시간 알아내기
 
+trainA = 10
+trainB = 25
+trainC = 30
+
+for m in range(1,540+1): #오전 9시 ~ 오후 6시 분으로 환산하면 540분 m = minute.
+    if m % 10 ==0:
+        if m % trainA == 0 and m % trainB == 0 : # 이게 중간에 낀 것. 원래 141,142,144 이렇게만 하는게 시간을 출력하는 기본 코드.
+            print(f'{9 + m // 60:0d}시 {m%60:0d}분 A-B') # //이건 몫을 구하는 것. 9를 더하는 것은 시간을 나타내기 위해. 분은 나머지가 분이기 때문 이건 그냥 시간을 나타낸 것.
+        if m % trainA == 0 and m % trainC == 0:
+            print(f'{9 + m // 60:0d}시 {m % 60:0d}분 A-C')
+        if m % trainB == 0 and m % trainC == 0:
+            print(f'{9 + m // 60:0d}시 {m % 60:0d}분 B-C')
+        if m % trainA == 0 and m % trainB == 0 and m % trainC == 0:
+            print(f'{9 + m // 60:0d}시 {m % 60:0d}분 A-B-C')
+
+
+
 
 # 실전예제 3
 # 관리자 로그인 기능
