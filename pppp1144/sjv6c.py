@@ -2,8 +2,9 @@ import json
 import sys
 from collections import OrderedDict
 
+sjs={'response' : {'body': {'totalCount':0, 'items': []}}}
 # sungjuks ={'response' : {'body': {'totalCount':999, 'items': []}}}
-sjs = {'sungjuks':[]}
+#sjs = {'sungjuks':[]}   # 이거로 대신하면 더 편함. show 랑 save쪽 'sungjuks'로 바꾸면 됨.
 
 # 프로그램 시작시 sungjuks.json 파일을  읽어 sjs 변수에 초기화
 def load_sungjuk():
@@ -49,7 +50,8 @@ def compute_sungjuk(sj):
 
 def save_sungjuk(sj):
     # 메모리 내에 생성된 json 객체에 방금 생성한 성적데이터 저장
-    sjs['sungjuks'].append(sj)
+    sjs['response']['body']['items'].append(sj)
+    sjs['response']['body']['totalCount'] += 1 # 얘는 sjs = sungjuks 면 필요없음.
     # 메모리 내에 생성된 json 객체를 파일에 저장 ( w를 써야 덮어쓰기 가능)
     with open ('sungjuks.json', 'w', encoding='utf-8')as f:
         json.dump(sjs, f, ensure_ascii=False)
@@ -65,7 +67,7 @@ def addSungJuk():
 
 def show_sungjuk():
     print('성적데이터 조회')
-    for sj in sjs['sungjuks']:
+    for sj in sjs['response']['body']['items']:
         print(f"이름: {sj['name']:s}, 국어: {sj['kor']},"
               f" 영어: {sj['eng']}, 수학:{sj['math']}")
 
