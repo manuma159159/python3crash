@@ -165,9 +165,25 @@ def modify_sungjuk():
     else:
         print('찾으시는 데이터가 없습니다.')
 def remove_sungjuk():
-    return None
+    name = input('삭제할 학생의 이름은?')
 
+    # 삭제할 데이터를 찾음
+    data = name
+    for sj in items:
+        if sj['name'] == name:
+            data = sj
+            break
 
+    # 삭제할 데이터를 찾았다면
+    if data:
+        confirm = input('정말로 삭제하시겠습니까?  (yes/no) : ')
+        if confirm == 'yes':
+            items.remove(data)
+            sjs['response']['body']['totalCount'] -= 1
+            print(f'{name}의 데이터가 삭제되었습니다.')
+            flush_sungjuk()
+        else:
+            print('삭제가 취소되었습니다.')
 def exit_sungjuk():
     print('프로그램 종료')
     sys.exit(0)
