@@ -77,7 +77,6 @@ def compute_sungjuk(sj):
 #         json.dump(sjs, f, ensure_ascii=False)
 
 def save_sungjuk(sj):
-    global totalCount
     # 메모리 내에 생성된 json 객체에 방금 생성한 성적데이터 저장
     items.append(sj)
     sjs['response']['body']['totalCount'] += 1 # 얘는 sjs = sungjuks 면 필요없음.
@@ -125,10 +124,46 @@ def showone_sungonejuk():
             break  # 찾고나면 검색 작업 중단
     print(info)
 
+def read_again(data,name):
+    kor = int(input(f'새로운 국어점수는? ({data["kor"]})'))
+    eng = int(input(f'새로운 영어점수는? ({data["eng"]})'))
+    math = int(input(f'새로운 수학점수는? ({data["math"]}) :'))
+
+    data = OrderedDict()
+    data['name'] = name
+    data['kor'] = kor
+    data['eng'] = eng
+    data['math'] = math
+    
+    return data
+
+
+def flush_sungjuk():
+    with open('sungjuks.json', 'w', encoding='utf-8') as f:
+        json.dump(sjs, f, ensure_ascii=False)
+
+
 def modify_sungjuk():
-    return None
-
-
+    name = input('수정할 학생의 이름은')
+    # 수정할 학생 데이터를 이름으로 찾음
+    data = None
+    idx = None
+    for i,sj in enumerate(items):
+        if sj['name'] == name:
+            data = sj
+            idx = i
+            
+    # 수정할 학생 데이터를 찾았다면 새로운 값을 입력받고 다시 성적처리함
+    if data:
+        data = read_again(data,name)
+        compute_sungjuk(data)
+        # 리스트에 기존 데이터를 버리고 새로운 데이터로 재설정
+        items [idx] = data
+        
+        # 변경 사항을 json 파일에 반영
+        flush_sungjuk()
+    else:
+        print('찾으시는 데이터가 없습니다.')
 def remove_sungjuk():
     return None
 
