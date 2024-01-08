@@ -15,33 +15,40 @@
 # 텍스트 컬럼은 자동으로 CLOB 타입으로 설정되기 때문에
 # 이걸 테이블로 가져올 때 설정으로 바꿔서 VARCHAR로 바꿔야함.
 
-import cx_Oracle
+# 2024-01-08 기준
+# cx_Oracle 모듈이 oracledb로 업그레이드 됨
+# oracle instant client 없이 데이터베이스 관련 작업 가능!
+# pip install oracledb
 
-# host = ''
-# userid = ''
-# passwd =  ''
-# sid = 'FREE'
-#
-# # 디비 서버에 연결
+import cx_Oracle
+import oracledb
+
+host = ''
+userid = ''
+passwd =  ''
+sid = 'FREE'
+
+# 디비 서버에 연결
 # dsn_tns = cx_Oracle.makedsn(host, 1521, sid)
 # conn = cx_Oracle.connect(userid, passwd, dsn_tns)
-#
-# cursor = conn.cursor()
-#
-# sql = ' select first_name, last_name from employees '
-# cursor.execute(sql)
-#
-# for fname, lname in cursor:
-#     print(fname,lname)
-#
-# cursor.close()
-# conn.close()
+dsn_tns = oracledb.makedsn(host, 1521, sid)
+conn = oracledb.connect(user = userid, password = passwd, dsn=dsn_tns)
+cursor = conn.cursor()
+
+sql = ' select first_name, last_name from employees '
+cursor.execute(sql)
+
+for fname, lname in cursor:
+    print(fname,lname)
+
+cursor.close()
+conn.close()
 
 # 국가별 메달 획득 수 조회
 host = ''
 userid = ''
 passwd =  ''
-sid = ''
+sid = 'FREE'
 
 dsn_tns = cx_Oracle.makedsn(host, 1521, sid)
 conn = cx_Oracle.connect(userid, passwd, dsn_tns)
@@ -60,8 +67,10 @@ conn.close()
 
 # 승선위치별(embarked) 성별(sex) 생존자수(ALIVE) 조회
 
-dsn_tns = cx_Oracle.makedsn(host, 1521, sid)
-conn = cx_Oracle.connect(userid, passwd, dsn_tns)
+# dsn_tns = cx_Oracle.makedsn(host, 1521, sid)
+# conn = cx_Oracle.connect(userid, passwd, dsn_tns)
+dsn_tns = oracledb.makedsn(host, 1521, sid)
+conn = oracledb.connect(user=userid, password=passwd, dsn=dsn_tns)
 
 cursor = conn.cursor()
 
@@ -78,7 +87,7 @@ cursor.close()
 conn.close()
 
 
-# 승선위치별(embarked) 사람별(who) 생존자수(survieved) 조회
+# 승선위치별(embarked) 사람별(who) 생존자수(alive) 조회
 
 dsn_tns = cx_Oracle.makedsn(host, 1521, sid)
 conn = cx_Oracle.connect(userid, passwd, dsn_tns)
