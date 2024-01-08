@@ -26,17 +26,14 @@ for i in range (len(names)):
     tots.append(kors[i] + engs[i] + maths[i])
     avgs.append(tots[i] / 3)
     avg = avgs[len(avgs)-1]
-    grd = '수' if avg >= 90\
-        '우' if avg >= 80 else '미' \
-        '미' if avg >= 70 else '양' \
-        '양' if avg >=60 else '가'
-            grds.append(grd)
+    grd = '수' if avg >= 90 else '우'\
+            '우' if avg >= 80 else '미' \
+            '미' if avg >= 70 else '양' \
+            '양' if avg >=60 else '가'
+    grds.append(grd)
 #결과 출력
 for i in range(len(names)):
     print(f'이름: {names[i]:s}, 국어: {kors[i]}, 영어: {engs[i]}, 수학:{maths[i]}')
     print(f'총점: {tots[i]:d}, 평균: {avgs[i]:.1f}, 학점 : {grds[i]}')
 
 
-#
-result = '수' if '90'< kors,engs,maths <='100' else '탈락'
-print(f'{result}')
