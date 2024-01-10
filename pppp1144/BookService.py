@@ -3,6 +3,14 @@ import sys
 from pppp1144.BookDAO import BookDAO
 from pppp1144.Book import Book
 
+# 클래스의 메서드  접근제한자
+# public : 어느 클래스든지 모두 접근 가능
+# protected : 상속관계에 있는 클래스만 접근 가능 ( 파이썬 지원 x)
+# default : 같은 패키지네 클래스들끼리 접근 가능 ( 파이썬 지원 x )
+# private : 자기 자신 클래스만 접근 가능 ( 메서드에 __ 추가 ) 나 혼자만 쓰는 느낌
+
+
+
 class BookService:
     @staticmethod
 # 메뉴 출력
@@ -26,8 +34,8 @@ class BookService:
         menu = input('=> 메뉴를 선택하세요: ')
         return menu
 
-    @staticmethod
-    def input_book():
+    @staticmethod  # input_book 앞에 __ 붙이면 여기서만 쓸수 있는 함수가 된다.
+    def __input_book():
         bkname = input('도서명은?')
         author = input('도서 저자는?')
         publisher = input('도서 출판사는?')
@@ -49,7 +57,7 @@ class BookService:
         """
         print('도서데이터 추가')
 
-        bk = BookService.input_book()
+        bk = BookService.__input_book() # 부를때도 짝대기 두개 해야 불러진다. 안부르면 실행이 안된다.
         print(bk)
         rowcnt = BookDAO.insert_book(bk)
         print(f'{rowcnt} 건의 도서데이터 등록됨')
@@ -68,8 +76,8 @@ class BookService:
         for row in rows:
             result += f'{row[0]} {row[1]} {row[2]} {row[3]} {row[4]:,}\n'
             print(result)
+
     @staticmethod
-    #도서 상세 조회
     def readone_book():
         """
         도서 상세 조회
@@ -82,7 +90,7 @@ class BookService:
         print(f'{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} '
               f'{row[5]:,} {row[6]:,} {row[7]:%} {row[8]:,} {row[9]}')
     # @staticmethod
-    def reinput_book(obk): #obk old book name  얘는 modify만을 위해 있는 함수임 그래서 독립적으로 시행되면 안됨.
+    def __reinput_book(obk): #obk old book name  얘는 modify만을 위해 있는 함수임 그래서 독립적으로 시행되면 안됨.
         bkname = input(f'도서명은? ({obk[1]}): ')
         author = input(f'도서 저자는? ({obk[2]}): ')
         publisher = input(f'도서 출판사는? ({obk[3]}): ')
@@ -99,7 +107,6 @@ class BookService:
         return bk
 
     @staticmethod
-    # 도서 데이터 수정
     def modify_book():
         """
         도서 데이터 수정
@@ -110,7 +117,7 @@ class BookService:
         row = BookDAO.selectone_book(bkname)
 
         if row:
-            bk = BookService.reinput_book(row)
+            bk = BookService.__reinput_book(row)
             rowcnt = BookDAO.update_book(bk)
             print(f'{rowcnt} 건의 도서데이터 수정됨')
         else:
