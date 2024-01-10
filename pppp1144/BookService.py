@@ -75,7 +75,12 @@ def readone_book():
     :return: 이름부터 학점까지 전부 나타냄
     """
     bkname = input('상세 조회할 도서명은?')
-    pass
+
+    row = BookDAO.selectone_book(bkname)
+
+    print(f'{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} '
+          f'{row[5]:,} {row[6]:,} {row[7]:%} {row[8]:,} {row[9]}')
+
 
 # 도서 데이터 수정
 def modify_book():
