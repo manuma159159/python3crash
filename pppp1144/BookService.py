@@ -4,7 +4,6 @@ from pppp1144.BookDAO import BookDAO
 from pppp1144.Book import Book
 
 
-
 # 메뉴 출력
 def show_menu():
     '''
@@ -27,6 +26,20 @@ def show_menu():
     return menu
 
 
+def input_book():
+    bkname = input('도서명은?')
+    author = input('도서 저자는?')
+    publisher = input('도서 출판사는?')
+    pubdate = input('도서 출간일은?')
+    retail = input('도서 소매가는?')
+    pctoff = input('도서 할인율은?')
+
+    bk = Book(bkname, author, publisher, pubdate, retail, pctoff)
+
+    bk.price = bk.retail * (1-(bk.pctoff/100))
+    bk.mileage = bk.retail * (bk.pctoff/100)
+    return bk
+
 
 def new_book():
     """
@@ -34,9 +47,11 @@ def new_book():
     :return:
     """
     print('도서데이터 추가')
-    pass
 
-
+    bk = input_book()
+    
+    rowcnt = BookDAO.insert_book(bk)
+    print(f'{rowcnt} 건의 도서데이터 등록됨')
 
 
 # 모든 도서 데이터 출력 (번호/이름/국어/영어/수학/등록일)
