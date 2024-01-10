@@ -1,4 +1,5 @@
 #import oracledb dbinfo에 있어서 안씀
+import os.path
 import sys
 from pppp1144.BookDAO import BookDAO
 from pppp1144.Book import Book
@@ -36,19 +37,26 @@ class BookService:
 
     @staticmethod  # input_book 앞에 __ 붙이면 여기서만 쓸수 있는 함수가 된다.
     def __input_book():
-        bkname = input('도서명은?')
-        author = input('도서 저자는?')
-        publisher = input('도서 출판사는?')
-        pubdate = input('도서 출간일은?')
-        retail = int(input('도서 소매가는?'))
-        pctoff = int(input('도서 할인율은?'))
+        try:
+            bkname = input('도서명은?')
+            author = input('도서 저자는?')
+            publisher = input('도서 출판사는?')
+            pubdate = input('도서 출간일은?')
+            retail = int(input('도서 소매가는?'))
+            pctoff = int(input('도서 할인율은?'))
 
-        bk = Book(bkname, author, publisher, pubdate, retail, pctoff)
+            bk = Book(bkname, author, publisher, pubdate, retail, pctoff)
 
-        bk.price = bk.retail * (1-(bk.pctoff/100))
-        bk.mileage = bk.retail * (bk.pctoff/100)
-        return bk
-
+            bk.price = bk.retail * (1-(bk.pctoff/100))
+            bk.mileage = bk.retail * (bk.pctoff/100)
+            return bk
+        except:
+            print('BookService - input_book에서 오류 발생')
+            exc_type,exc_obj,exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
+            print('예외내용 : ', exc_obj)
+            print('예외내용 : ', exc_type.__name__)
+            print('예외위치 : ', fname, exc_tb.tb_lineno)
     @staticmethod
     def new_book():
         """
@@ -56,12 +64,18 @@ class BookService:
         :return:
         """
         print('도서데이터 추가')
+        try:
+            bk = BookService.__input_book() # 부를때도 짝대기 두개 해야 불러진다. 안부르면 실행이 안된다.
 
-        bk = BookService.__input_book() # 부를때도 짝대기 두개 해야 불러진다. 안부르면 실행이 안된다.
-        print(bk)
-        rowcnt = BookDAO.insert_book(bk)
-        print(f'{rowcnt} 건의 도서데이터 등록됨')
-
+            rowcnt = BookDAO.insert_book(bk)
+            print(f'{rowcnt} 건의 도서데이터 등록됨')
+        except:
+            print('BookService - input_book에서 오류 발생')
+            exc_type,exc_obj,exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
+            print('예외내용 : ', exc_obj)
+            print('예외내용 : ', exc_type.__name__)
+            print('예외위치 : ', fname, exc_tb.tb_lineno)
     @staticmethod
     # 모든 도서 데이터 출력 (번호/이름/국어/영어/수학/등록일)
     def read_book():
