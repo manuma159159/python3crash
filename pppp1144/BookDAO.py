@@ -23,9 +23,14 @@ class BookDAO:
         return rowcnt
 
     @staticmethod
-    def select_book(self):
-        pass
+    def select_book():
+        cursor,conn = dbinfo.openConn()
 
+        cursor.execute(selectsql)
+        rows = cursor.fetchall()
+
+        dbinfo.closeConn(cursor,conn)
+        return rows
 
 
     @staticmethod
