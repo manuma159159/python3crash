@@ -99,7 +99,9 @@ def remove_book():
     :return: 도서 데이터가 json파일에서 삭제됨. count도 줄어들음.
     """
     bkno = input('삭제할 번호는?')
-    pass
+
+    rowcnt = BookDAO.delete_book(bkno)
+    print(f'{rowcnt} 건의 도서데이터 등록됨')
 
 
 
