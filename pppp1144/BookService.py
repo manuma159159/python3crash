@@ -53,10 +53,10 @@ class BookService:
         except:
             print('BookService - input_book에서 오류 발생')
             exc_type,exc_obj,exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
+            frame = os.path.split(exc_tb.tb_frame.f_code.co_filename)
             print('예외내용 : ', exc_obj)
             print('예외내용 : ', exc_type.__name__)
-            print('예외위치 : ', fname, exc_tb.tb_lineno)
+            print('예외위치 : ', frame, exc_tb.tb_lineno)
     @staticmethod
     def new_book():
         """

@@ -1,4 +1,7 @@
 import pppp1144.dbinfo2 as dbinfo
+import os
+import sys
+
 
 insertsql = ' insert into book (bkname, author, publisher, pubdate, retail, price, pctoff, mileage) '\
             ' values (%s,%s,%s,%s,%s,%s,%s,%s)'
@@ -10,17 +13,28 @@ deletesql = 'delete from book where bkno=%s'
 class BookDAO:
     @staticmethod
     def insert_book(bk):
+        cursor, conn, rowcnt = None,None,-1
+        try:
+            cursor,conn = dbinfo.openConn()
 
+            params = [bk.bkname,bk.author,bk.publisher,bk.pubdate,
+                      int(bk.retail),int(bk.price),int(bk.pctoff),bk.mileage]
+            cursor.execute(insertsql,params)
+            conn.commit()
+            rowcnt = cursor.rowcount
 
-        cursor,conn = dbinfo.openConn()
+            dbinfo.closeConn(cursor,conn)
 
-        params = [bk.bkname,bk.author,bk.publisher,bk.pubdate,
-                  int(bk.retail),int(bk.price),int(bk.pctoff),bk.mileage]
-        cursor.execute(insertsql,params)
-        conn.commit()
-        rowcnt = cursor.rowcount
+        except:
+            print('BookDao - insert_book에서 오류 발생')
+            exc_type,exc_obj,exc_tb = sys.exc_info()
+            frame = os.path.split(exc_tb.tb_frame.f_code.co_filename)
+            print('예외내용 : ', exc_obj)
+            print('예외내용 : ', exc_type.__name__)
+            print('예외위치 : ', frame, exc_tb.tb_lineno)
 
-        dbinfo.closeConn(cursor,conn)
+        finally:
+            dbinfo.closeConn(cursor,conn)
         return rowcnt
 
     @staticmethod
