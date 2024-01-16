@@ -7,7 +7,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 #sqlalchemy 설정
-database_url = 'sqlite:///bigdata.db'
+database_url = ''
 engine = create_engine(database_url,echo=True)
 Session = sessionmaker(bind=engine)
 

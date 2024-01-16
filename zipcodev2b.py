@@ -1,5 +1,4 @@
 from typing import Optional
-
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, String, Integer, Sequence
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -8,7 +7,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 #sqlalchemy 설정
-database_url = 'sqlite:///bigdata.db'
+database_url = ''
 engine = create_engine(database_url,echo=True)
 Session = sessionmaker(autocommit=False, autoflush=False,bind=engine)
 
@@ -17,8 +16,8 @@ Session = sessionmaker(autocommit=False, autoflush=False,bind=engine)
 Base = declarative_base()
 class Zipcode(Base):
     __tablename__='zipcode2013'# 매핑할 테이블 지정
-    zipcode = Column(String(7)) # zipcode가 일곱글자라 7이 오는거임
-    sido = Column(String(7)) #
+    zipcode = Column(String(7))
+    sido = Column(String(7))
     gugun = Column(String(50))
     dong = Column(String(50))
     ri = Column(String(50))

@@ -6,9 +6,9 @@ from sqlalchemy import create_engine, Column, String, Integer, Sequence
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # 데이터베이스 연결준비
-# database_url = 'sqlite:///bigdata.db'
-#database_url = 'mysql+pymysql://admin:bigdata2023@bigdata.ciefa0cprwiy.ap-northeast-2.rds.amazonaws.com:3306/bigdata?charset=utf8mb4' # mariadb
-database_url = 'oracle+cx_oracle://bigdata:bigdata@3.35.238.195:1521'
+database_url = ''
+#database_url = '' # mariadb
+database_url = ''
 
 engine = create_engine(database_url,echo=True)
 
@@ -18,6 +18,8 @@ sess = Session()
 
 # ORM 객체 생성을 위한 Base 클래스 선언
 Base = declarative_base()
+
+
 class Zipcode(Base):
     __tablename__='Zipcode'# 매핑할 테이블 지정
     zipcode = Column(String(7)) # zipcode가 일곱글자라 7이 오는거임
