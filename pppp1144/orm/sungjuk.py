@@ -1,15 +1,18 @@
-from sqlalchemy import Column, Integer, String
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 class Sungjuk(Base):
-    __tablename__='SUNGJUKS'# 매핑할 테이블 지정
-    SJNO = Column(Integer(500))
-    NAME = Column(String(30)) #
-    KOR = Column(Integer(50))
-    ENG = Column(Integer(50))
-    MATH = Column(Integer(50))
-    TOT = Column(Integer(100))
-    AVG = Column(Integer(100))
-    GRD = Column(String(100))
-    REGDATE = None
+    __tablename__='sungjuk'# 매핑할 테이블 지정
+    sjno = Column(Integer, primary_key=True) # 오라클로 하려면 여기 바꿔야함
+    name = Column(String(20)) #
+    kor = Column(Integer)
+    eng = Column(Integer)
+    math = Column(Integer)
+    tot = Column(Integer)
+    avg = Column(Float)
+    grd = Column(String(2))
+    regdate = Column(DateTime, default=datetime.now(),
+                     onupdate=datetime.now)
+
